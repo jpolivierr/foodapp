@@ -1,0 +1,61 @@
+.Forms {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 35%;
+  height: 85%;
+  background-color: white;
+  margin: auto;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  animation: move .5s ease-in-out forwards;
+}
+
+@keyframes move{
+  from{
+     top: -1000px;
+     opacity: 0;
+  }
+  to{
+    top: 0px;
+    opacity: 1;
+  }
+
+}
+
+.login-form{
+  height: 65%;
+}
+
+.form-title-section {
+  width: 80%;
+  text-align: left;
+  margin: 40px 0px;
+}
+
+.form-title-section h2 {
+  color: var(--main-color);
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+.Forms .button-container {
+  margin: 20px 0px;
+  width: 80%;
+}
+
+.Forms .button-container p {
+  padding-bottom: 30px;
+}
+.Forms button {
+  align-self: flex-start;
+  background-color: var(--main-color);
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 15px 40px;
+  border-radius: 100px;
+  cursor: pointer;
+}

@@ -1,0 +1,38 @@
+.Navigation {
+  /* border: 1px solid red; */
+  top: 0;
+  width: var(--container-size);
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.Navigation .logo,
+span {
+  font-size: 38px;
+}
+
+.Navigation .logo span {
+  color: var(--main-color);
+}
+.registration {
+  display: flex;
+}
+.user {
+  border: 1px solid var(--main-color);
+  background: transparent;
+  padding: 7px 20px;
+  display: flex;
+  align-items: center;
+  height: 50%;
+  margin-left: 20px;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.Navigation .sign-up {
+  margin: auto 0px;
+}

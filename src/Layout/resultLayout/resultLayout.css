@@ -1,0 +1,6 @@
+.resultLayout{
+    /* border: 1px solid red; */
+    width: var(--container-size);
+    margin: 30px 0px;
+    height: 70%;
+}
