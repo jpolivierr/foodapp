@@ -14,3 +14,16 @@
         opacity: 1;
     }
 }
+
+.Backmodalout{
+    animation: backmodalout .2s ease-in-out forwards;
+}
+
+@keyframes backmodalout{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}

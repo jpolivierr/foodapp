@@ -9,7 +9,7 @@ import "./App.css"
 
 function App() {
   const modal = useSelector((state)=> state.modal)
-  console.log(modal.modaltype)
+  // console.log(modal.modaltype)
 
   const getForms = () =>{
       switch (modal.modaltype) {
@@ -19,6 +19,9 @@ function App() {
     case 'signup':
       return(<Forms type='signup'/>)
       break;
+    // case 'out':
+    //   return setTimeout(()=>{ return console.log('time out activa')},2000)
+    //   break;
     default:
       return ''
       break;
@@ -35,7 +38,7 @@ function App() {
         {/* <Searchbar/> */}
         {/* <Forms type="signup" /> */}
         {getForms()}
-      
+        {/* <Forms type='signup'/> */}
         <ResultLayout />
       </div>
     

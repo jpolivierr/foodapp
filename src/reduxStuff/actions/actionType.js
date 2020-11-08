@@ -1,2 +1,3 @@
 export const MODALON = 'MODALON'
 export const MODALOFF = 'MODALOFF' 
+export const OUT_WITH_ANIMATION = 'OUT_WITH_ANIMATION'

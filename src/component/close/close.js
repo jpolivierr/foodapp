@@ -23,17 +23,21 @@ function Close() {
   }
 
   const dispatch = useDispatch()
+
+  const setStates = () => {
+    dispatch({
+      type: actions.OUT_WITH_ANIMATION,
+    })
+
+    setTimeout(() => {
+      dispatch({
+        type: actions.MODALOFF,
+      })
+    }, 1000)
+  }
+
   return (
-    <div
-      className="close"
-      style={Style}
-      onClick={() => {
-        dispatch({
-          type: actions.MODALOFF,
-          payload: { modaltype: "" },
-        })
-      }}
-    >
+    <div className="close" style={Style} onClick={() => setStates()}>
       +
     </div>
   )

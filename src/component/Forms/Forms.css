@@ -13,7 +13,6 @@
   align-items: center;
   animation: move .5s ease-in-out forwards;
 }
-
 @keyframes move{
   from{
      top: -1000px;
@@ -23,7 +22,19 @@
     top: 0px;
     opacity: 1;
   }
-
+}
+.Formout{
+  animation: moveout .5s ease-in-out forwards;
+}
+@keyframes moveout{
+  from{
+     top: 0px;
+     opacity: 1;
+  }
+  to{
+    top: -1000px;
+    opacity: 0;
+  }
 }
 
 .login-form{

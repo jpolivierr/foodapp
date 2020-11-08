@@ -2,6 +2,7 @@ import * as actions from "../actions/actionType"
 
 const initialState = {
   modaltype: "",
+  OUT_WITH_ANIMATION: false
 }
 
 function Modal(state = initialState, action){
@@ -9,7 +10,9 @@ function Modal(state = initialState, action){
     case actions.MODALON:
       return { ...state, ...action.payload}
     case actions.MODALOFF:
-      return { ...state, ...action.payload }
+      return { ...state, modaltype: '' }
+    case actions.OUT_WITH_ANIMATION:
+      return { ...state, OUT_WITH_ANIMATION: true }
     default:
       return state
   }

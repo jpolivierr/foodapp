@@ -7,9 +7,8 @@ import "./Forms.css"
 
 function Forms(props) {
   const modal = useSelector((state)=> state.modal)
-  console.log(modal.modaltype)
-  const formout = ''
-  if(modal.modaltype === ''){
+  let formout = ''
+  if(modal.OUT_WITH_ANIMATION === true){
     formout = 'Formout'
   }
 
@@ -41,7 +40,7 @@ function Forms(props) {
       return (
         <div style={{position: 'absolute', width: '100%', height:'100%'}}>
           <Backmodal />
-        <div className="Forms login-form">
+        <div className={`Forms login-form ${formout}`}>
         <Close/>
           <div className="form-title-section">
             <h2>Login</h2>

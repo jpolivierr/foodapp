@@ -17,7 +17,7 @@ function Navigation() {
           onClick={() =>
             dispatch({
               type: actions.MODALON,
-              payload: { modaltype: "signup" },
+              payload: { modaltype: "signup",OUT_WITH_ANIMATION: false },
             })
           }
         >
@@ -28,7 +28,7 @@ function Navigation() {
           onClick={() =>
             dispatch({
               type: actions.MODALON,
-              payload: { modaltype: "login" },
+              payload: { modaltype: "login", OUT_WITH_ANIMATION: false },
             })
           }
         >
