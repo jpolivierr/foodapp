@@ -1,9 +1,10 @@
 import React from "react"
+// import {useDispatch, useSelector} from 'react-redux'
 import "./result.css"
 
-function result() {
+function Result() {
   return (
-    <div className="result">
+    <div className={`result`}>
       <div className="snip-result">
         <div className="box">
           <div className="img"></div>
@@ -12,14 +13,14 @@ function result() {
             Review currency:$ cuisine: Seafood
           </div>
           <div className="address info">
-            <i class="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
+            <i className="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
             33315
           </div>
           <div className="Phone info">
-            <i class="fas fa-phone"></i> 786.256.8898
+            <i className="fas fa-phone"></i> 786.256.8898
           </div>
           <div className="open-hours info">
-            <i class="fas fa-clock"></i> Open: 10AM - 11PM
+            <i className="fas fa-clock"></i> Open: 10AM - 11PM
           </div>
         </div>
         <div className="box">
@@ -29,14 +30,14 @@ function result() {
             Review currency:$ cuisine: Seafood
           </div>
           <div className="address info">
-            <i class="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
+            <i className="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
             33315
           </div>
           <div className="Phone info">
-            <i class="fas fa-phone"></i> 786.256.8898
+            <i className="fas fa-phone"></i> 786.256.8898
           </div>
           <div className="open-hours info">
-            <i class="fas fa-clock"></i> Open: 10AM - 11PM
+            <i className="fas fa-clock"></i> Open: 10AM - 11PM
           </div>
         </div>
         <div className="box">
@@ -46,14 +47,14 @@ function result() {
             Review currency:$ cuisine: Seafood
           </div>
           <div className="address info">
-            <i class="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
+            <i className="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
             33315
           </div>
           <div className="Phone info">
-            <i class="fas fa-phone"></i> 786.256.8898
+            <i className="fas fa-phone"></i> 786.256.8898
           </div>
           <div className="open-hours info">
-            <i class="fas fa-clock"></i> Open: 10AM - 11PM
+            <i className="fas fa-clock"></i> Open: 10AM - 11PM
           </div>
         </div>
         <div className="box">
@@ -63,14 +64,14 @@ function result() {
             Review currency:$ cuisine: Seafood
           </div>
           <div className="address info">
-            <i class="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
+            <i className="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
             33315
           </div>
           <div className="Phone info">
-            <i class="fas fa-phone"></i> 786.256.8898
+            <i className="fas fa-phone"></i> 786.256.8898
           </div>
           <div className="open-hours info">
-            <i class="fas fa-clock"></i> Open: 10AM - 11PM
+            <i className="fas fa-clock"></i> Open: 10AM - 11PM
           </div>
         </div>
         <div className="box">
@@ -80,14 +81,14 @@ function result() {
             Review currency:$ cuisine: Seafood
           </div>
           <div className="address info">
-            <i class="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
+            <i className="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
             33315
           </div>
           <div className="Phone info">
-            <i class="fas fa-phone"></i> 786.256.8898
+            <i className="fas fa-phone"></i> 786.256.8898
           </div>
           <div className="open-hours info">
-            <i class="fas fa-clock"></i> Open: 10AM - 11PM
+            <i className="fas fa-clock"></i> Open: 10AM - 11PM
           </div>
         </div>
         <div className="box">
@@ -97,14 +98,14 @@ function result() {
             Review currency:$ cuisine: Seafood
           </div>
           <div className="address info">
-            <i class="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
+            <i className="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
             33315
           </div>
           <div className="Phone info">
-            <i class="fas fa-phone"></i> 786.256.8898
+            <i className="fas fa-phone"></i> 786.256.8898
           </div>
           <div className="open-hours info">
-            <i class="fas fa-clock"></i> Open: 10AM - 11PM
+            <i className="fas fa-clock"></i> Open: 10AM - 11PM
           </div>
         </div>
         
@@ -119,26 +120,26 @@ function result() {
         </div>
         <div className="link-bar">
           <div className="menu r-btn">
-            <i class="fas fa-book-reader"></i> Menu
+            <i className="fas fa-book-reader"></i> Menu
           </div>
           <div className="call r-btn">
-            <i class="fas fa-phone"></i> Call
+            <i className="fas fa-phone"></i> Call
           </div>
           <div className="website r-btn">
-            <i class="fas fa-globe"></i> Website
+            <i className="fas fa-globe"></i> Website
           </div>
         </div>
 
         <div className="link-info">
           <div className="address r-info">
-            <i class="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
+            <i className="fas fa-map-marker-alt"></i> 1233 nw 13th ave miami, Fl,
             33315
           </div>
           <div className="Phone r-info">
-            <i class="fas fa-phone"></i> 786.256.8898
+            <i className="fas fa-phone"></i> 786.256.8898
           </div>
           <div className="open-hours r-info">
-            <i class="fas fa-clock"></i> Open: 10AM - 11PM
+            <i className="fas fa-clock"></i> Open: 10AM - 11PM
           </div>
         </div>
         <h3>Photos</h3>
@@ -155,4 +156,4 @@ function result() {
   )
 }
 
-export default result
+export default Result

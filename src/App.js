@@ -1,47 +1,46 @@
-import Searchbar from "./component/searchbar/searchbar"
 import Navigation from "./component/navigation/Navigation"
+import Searchbar from "./component/searchbar/searchbar"
 import ResultLayout from "./Layout/resultLayout/resultLayout"
-import Backmodal from "./component/Backmodal/Backmodal"
 import Forms from "./component/Forms/Forms"
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector } from "react-redux"
 import "./App.css"
 
-
 function App() {
-  const modal = useSelector((state)=> state.modal)
+  const modal = useSelector((state) => state.modal)
+  const showcase = useSelector((state) => state.showcase)
   // console.log(modal.modaltype)
 
-  const getForms = () =>{
-      switch (modal.modaltype) {
-    case 'login':
-      return(<Forms type='login'/>)
-      break;
-    case 'signup':
-      return(<Forms type='signup'/>)
-      break;
-    // case 'out':
-    //   return setTimeout(()=>{ return console.log('time out activa')},2000)
-    //   break;
-    default:
-      return ''
-      break;
+  const getForms = () => {
+    switch (modal.modaltype) {
+      case "login":
+        return <Forms type="login" />
+      case "signup":
+        return <Forms type="signup" />
+      default:
+        return ""
+   
+    }
   }
+  const getShowcase = () => {
+    switch (showcase.showcase) {
+      case 1:
+        return <Searchbar />
+      
+      case 2:
+        return <ResultLayout />
+    
+      default:
+        return ""
+       
+    }
   }
-
-
 
   return (
-    
-      <div className="App">
-        <Navigation />
-        {/* <Backmodal /> */}
-        {/* <Searchbar/> */}
-        {/* <Forms type="signup" /> */}
-        {getForms()}
-        {/* <Forms type='signup'/> */}
-        <ResultLayout />
-      </div>
-    
+    <div className="App">
+      <Navigation />
+      {getShowcase()}
+      {getForms()}
+    </div>
   )
 }
 

@@ -1,5 +1,5 @@
 import React from "react"
-import { useSelector, useDispatch } from "react-redux"
+import {useDispatch } from "react-redux"
 import * as actions from "../../reduxStuff/actions/actionType"
 import "./Navigation.css"
 
@@ -7,7 +7,10 @@ function Navigation() {
   const dispatch = useDispatch()
   return (
     <div className="Navigation">
-      <div className="logo">
+      <div className="logo" onClick={()=> {dispatch({
+          type: actions.SHOWCASE_OPTION,
+          payload:{ showcase: 1, animation: false},
+        })}}>
         {" "}
         <span>Food</span>App
       </div>

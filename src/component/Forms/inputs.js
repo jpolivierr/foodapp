@@ -51,6 +51,8 @@ function inputs(props) {
           placeholder="Enter password"
         />
       )
+      default: 
+      return null
   }
 }
 

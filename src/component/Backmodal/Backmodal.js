@@ -1,6 +1,6 @@
 import React from 'react'
 import './Backmodal.css'
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 
 function Backmodal() {
     const modal = useSelector((state)=> state.modal)

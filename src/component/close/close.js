@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux"
 
 function Close() {
   const Style = {
-    width: "min-content",
     position: "absolute",
     fontSize: "2rem",
     right: "10px",

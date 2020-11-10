@@ -13,6 +13,7 @@
 .Navigation .logo,
 span {
   font-size: 38px;
+  cursor: pointer;
 }
 
 .Navigation .logo span {

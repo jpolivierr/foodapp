@@ -9,22 +9,25 @@
 
 .snip-result {
   background: transparent;
-  /* border: 1px solid blue; */
   overflow: hidden;
   overflow-y: scroll;
-  padding: 10px 20px;
-  padding-top: 0;
-  padding-left: 0;
+  padding-right: 5px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--main-color) transparent;
 }
-.result .snip-result::-webkit-scrollbar {
+.snip-result::-webkit-scrollbar {
   width: 5px;
 }
-/* .result .snip-result::-webkit-scrollbar-track {
-  
-} */
+.result .snip-result::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+}
+
+.snip-result div:nth-last-child(1){
+  margin-bottom: 0;
+}
 
 .snip-result .box {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: grid;
   grid-template-columns: 30% 70%;
   grid-template-rows: repeat(5, min-content);
@@ -36,7 +39,7 @@
 }
 .snip-result .box:hover {
   background: rgb(234, 255, 234);
-  transform: translateX(10px);
+  transform: translateX(5px);
 }
 
 .snip-result .box h2 {
