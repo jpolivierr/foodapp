@@ -46,12 +46,8 @@ function AdvanceSearch() {
   const getCategory = () => {
     dispatch({
       type: actions.LOADING,
-      payload: true
+      payload: true,
     })
-    // const cuisine =
-    //   "https://developers.zomato.com/api/v2.1/cuisines?city_id=291" // city and the cuisine
-    // const restaurant =
-    //   "https://developers.zomato.com/api/v2.1/search?entity_id=291&entity_type=city" // restaurant search by city id and
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -59,39 +55,49 @@ function AdvanceSearch() {
       },
     }
     const globalResults = {}
-
+    //------------------------------------------ gets restaurants by city name
     axios
       .get(
-        "https://cors-anywhere.herokuapp.com/https://developers.zomato.com/api/v2.1/search?entity_id=291&entity_type=city",
+        `https://cors-anywhere.herokuapp.com/https://developers.zomato.com/api/v2.1/locations?query=${filter.city}`,
         config
       )
       .then((res) => {
-        console.log(res.data.restaurants[0].restaurant)
-        globalResults.resultsShown = res.data.results_shown
-        const restaurants = res.data.restaurants.map((res) => {
-          return res.restaurant
-        })
-        globalResults.restaurants = restaurants
-        // console.log(restaurants)
+        //------------------------------------------ gets restaurants by cityid and searched for all restaurant in provided city
+        const cityInfo = res.data.location_suggestions[0]
+        const cuisineType = ''
+        switch(filter.cuisine){
+          case 'Cuisine':
+            return
+        }
+        axios
+          .get(
+            `https://cors-anywhere.herokuapp.com/https://developers.zomato.com/api/v2.1/search?entity_id=${cityInfo.city_id}&entity_type=city&cuisines=159`,
+            config
+          )
+          //------------------------------------------ gets properties needed frin results and add in new object to push to the store
+          .then((res) => {
+            // console.log(res.data.restaurants[0].restaurant)
+            globalResults.resultsShown = res.data.results_shown
+            const restaurants = res.data.restaurants.map((res) => {
+              return res.restaurant
+            })
+            globalResults.restaurants = restaurants
+            console.log(restaurants)
+            dispatch({
+              type: actions.PUSH_RESULT,
+              payload: globalResults,
+            })
+            dispatch({
+              type: actions.LOADING,
+              payload: false,
+            })
+          })
+          .catch((err) => console.log("Error From SECOND REQUEST " + err))
       })
-      .then(() => {
-        console.log(globalResults)
-        dispatch({
-          type: actions.PUSH_RESULT,
-          payload: globalResults
-        })
-        
-      })
-      .then(()=>{
-        dispatch({
-          type: actions.LOADING,
-          payload: false
-        })
-      })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log("Error From FIRST REQUEST " + err))
   }
 
-  console.log(filter)
+  // console.log(filter)
   return (
     <div className="advance-search">
       <h2>search Result: 28</h2>

@@ -1,10 +1,20 @@
 import React from "react"
-// import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import "./result.css"
 
 function Result() {
+   
+  const loading = useSelector((state)=> state.loading)
+  let loadingStyling = ''
+  if(loading === true){
+    loadingStyling = 'result-is-loading'
+  }else{
+    loadingStyling = ''
+  }
+//  console.log(loading)
   return (
-    <div className={`result`}>
+    <div className={`result ${loading.loading === true ? 'result-is-loading' : ''} `}>
+      {loading.loading === true ? <div className="lds-ripple"><div></div><div></div></div> : ''}
       <div className="snip-result">
         <div className="box">
           <div className="img"></div>
