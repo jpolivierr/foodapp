@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import Select from "../select/select"
-// import axios from "axios"
+import { useDispatch } from "react-redux"
+import * as actions from "../../reduxStuff/actions/actionType"
+import axios from "axios"
 import "./advanceSearch.css"
 
 function AdvanceSearch() {
@@ -16,7 +18,7 @@ function AdvanceSearch() {
     rating: "Rating",
     sort: "Sort-by",
   }
-
+  const dispatch = useDispatch()
   function updateFilter(Parent, value) {
     switch (Parent) {
       case "cuisine":
@@ -28,8 +30,8 @@ function AdvanceSearch() {
       case "sort":
         setFilter({ ...filter, sort: value })
         break
-        default:
-            return null
+      default:
+        return null
     }
   }
 
@@ -42,14 +44,50 @@ function AdvanceSearch() {
   }
 
   const getCategory = () => {
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "user-key": "2ee72a448846f7fcc7d50a9a84cd7535",
-    //   },
-    // }
-    fetch("https://jsonplaceholder.typicode.com/todos/1")
-      .then((res) => console.log(res.json()))
+    dispatch({
+      type: actions.LOADING,
+      payload: true
+    })
+    // const cuisine =
+    //   "https://developers.zomato.com/api/v2.1/cuisines?city_id=291" // city and the cuisine
+    // const restaurant =
+    //   "https://developers.zomato.com/api/v2.1/search?entity_id=291&entity_type=city" // restaurant search by city id and
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "user-key": "2ee72a448846f7fcc7d50a9a84cd7535",
+      },
+    }
+    const globalResults = {}
+
+    axios
+      .get(
+        "https://cors-anywhere.herokuapp.com/https://developers.zomato.com/api/v2.1/search?entity_id=291&entity_type=city",
+        config
+      )
+      .then((res) => {
+        console.log(res.data.restaurants[0].restaurant)
+        globalResults.resultsShown = res.data.results_shown
+        const restaurants = res.data.restaurants.map((res) => {
+          return res.restaurant
+        })
+        globalResults.restaurants = restaurants
+        // console.log(restaurants)
+      })
+      .then(() => {
+        console.log(globalResults)
+        dispatch({
+          type: actions.PUSH_RESULT,
+          payload: globalResults
+        })
+        
+      })
+      .then(()=>{
+        dispatch({
+          type: actions.LOADING,
+          payload: false
+        })
+      })
       .catch((err) => console.log(err))
   }
 
@@ -63,7 +101,7 @@ function AdvanceSearch() {
         selectedName="City / Zip"
         updateCity={updateCity}
         cityValue={filter.city}
-        onChange = {()=>{return 'hello'}}
+        readOnly={true}
       />
       <Select
         filterType="cuisine"
