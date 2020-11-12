@@ -2,7 +2,8 @@ import * as actions from "../actions/actionType"
 import cuisines from '../../component/advanceSearch/cuisine'
 
 const initialState = {
-  cuisine: [...cuisines]
+  cuisine: [...cuisines],
+  Results: {}
 }
 
 const results = (state = initialState, action) => {

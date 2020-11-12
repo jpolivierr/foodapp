@@ -1,28 +1,30 @@
 import React, { useState } from "react"
 import Select from "../select/select"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import * as actions from "../../reduxStuff/actions/actionType"
 import axios from "axios"
 import "./advanceSearch.css"
 
-function AdvanceSearch() {
+function AdvanceSearch(props) {
   const [filter, setFilter] = useState({
     city: "",
-    cuisine: "Cuisine",
+    cuisine: { name: "Cuisine", id: null },
     rating: "Rating",
     sort: "Sort-by",
   })
   const initialState = {
     city: "",
-    cuisine: "Cuisine",
+    cuisine: { name: "Cuisine", id: null },
     rating: "Rating",
     sort: "Sort-by",
   }
+  const showcase = useSelector((state) => state.showcase)
+  const loading = useSelector((state) => state.loading.loading)
   const dispatch = useDispatch()
-  function updateFilter(Parent, value) {
+  function updateFilter(Parent, value, cuisineId) {
     switch (Parent) {
       case "cuisine":
-        setFilter({ ...filter, cuisine: value })
+        setFilter({ ...filter, cuisine: { name: value, id: cuisineId } })
         break
       case "rating":
         setFilter({ ...filter, rating: value })
@@ -34,16 +36,25 @@ function AdvanceSearch() {
         return null
     }
   }
-
+  const setAnimation = () => {
+    dispatch({
+      type: actions.SHOWCASE_OPTION,
+      payload: { showcase: 1, animation: true },
+    })
+    setTimeout(() => {
+      dispatch({
+        type: actions.SHOWCASE_OPTION,
+        payload: { showcase: 2, animation: true },
+      })
+    }, 230)
+  }
   const updateCity = (value) => {
     setFilter({ ...filter, city: value })
   }
-
   const clearFilter = () => {
     setFilter({ ...filter, ...initialState })
   }
-
-  const getCategory = () => {
+  const getRestaurants = () => {
     dispatch({
       type: actions.LOADING,
       payload: true,
@@ -64,25 +75,19 @@ function AdvanceSearch() {
       .then((res) => {
         //------------------------------------------ gets restaurants by cityid and searched for all restaurant in provided city
         const cityInfo = res.data.location_suggestions[0]
-        const cuisineType = ''
-        switch(filter.cuisine){
-          case 'Cuisine':
-            return
-        }
         axios
           .get(
-            `https://cors-anywhere.herokuapp.com/https://developers.zomato.com/api/v2.1/search?entity_id=${cityInfo.city_id}&entity_type=city&cuisines=159`,
+            `https://cors-anywhere.herokuapp.com/https://developers.zomato.com/api/v2.1/search?entity_id=${cityInfo.city_id}&entity_type=city&cuisines=${filter.cuisine.id}`,
             config
           )
           //------------------------------------------ gets properties needed frin results and add in new object to push to the store
           .then((res) => {
-            // console.log(res.data.restaurants[0].restaurant)
             globalResults.resultsShown = res.data.results_shown
             const restaurants = res.data.restaurants.map((res) => {
               return res.restaurant
             })
             globalResults.restaurants = restaurants
-            console.log(restaurants)
+
             dispatch({
               type: actions.PUSH_RESULT,
               payload: globalResults,
@@ -91,15 +96,14 @@ function AdvanceSearch() {
               type: actions.LOADING,
               payload: false,
             })
+            const animation = showcase.showcase === 1 ? setAnimation() : null
           })
           .catch((err) => console.log("Error From SECOND REQUEST " + err))
       })
       .catch((err) => console.log("Error From FIRST REQUEST " + err))
   }
-
-  // console.log(filter)
   return (
-    <div className="advance-search">
+    <div className={`advance-search ${props.homeSearch}`}>
       <h2>search Result: 28</h2>
       <Select
         filterType="city"
@@ -108,13 +112,15 @@ function AdvanceSearch() {
         updateCity={updateCity}
         cityValue={filter.city}
         readOnly={true}
+        homeStyle={showcase.showcase === 1 ? "city-home-style" : ""}
       />
       <Select
         filterType="cuisine"
         type="select-from-advance"
         selectedName="Category"
         updateFilter={updateFilter}
-        cuisineValue={filter.cuisine}
+        cuisineValue={filter.cuisine.name}
+        homeStyle={showcase.showcase === 1 ? "cuisine-home-style" : ""}
       />
       <Select
         filterType="rating"
@@ -123,7 +129,6 @@ function AdvanceSearch() {
         updateFilter={updateFilter}
         ratingValue={filter.rating}
       />
-      {/* <Select type='select-from-advance' selectedName = 'Miles'/> */}
       <Select
         filterType="sort"
         type="select-from-advance"
@@ -131,9 +136,28 @@ function AdvanceSearch() {
         updateFilter={updateFilter}
         sortValue={filter.sort}
       />
-      <button onClick={() => getCategory()}>
-        <i className="fas fa-search"></i>&nbsp; Apply +
+      {/*------------------------ Search button */}
+      <button
+        onClick={() => {
+          getRestaurants()
+        }}
+        className={
+          showcase.showcase === 1
+            ? `button-home-style ${loading === true ? "button-loading" : ""} `
+            : ""
+        }
+      >
+        {loading === true ? (
+          <div className="lds-rippless">
+            <div></div>
+            <div></div>
+          </div>
+        ) : (
+          ""
+        )}
+        <i className="fas fa-search"></i>&nbsp; <span>Apply +</span>
       </button>
+      {/*------------------------ clear button */}
       <button
         onClick={() => {
           clearFilter()

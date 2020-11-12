@@ -50,6 +50,8 @@
     scrollbar-width: thin;
     scrollbar-color: var(--main-color) transparent;
     scroll-padding-block-start: 20px;
+    z-index: 3;
+    
   }
   .select-box::-webkit-scrollbar{
     background-color: transparent;
@@ -59,6 +61,7 @@
     background-color: var(--main-color);
   }
   .option{
+
     padding: 10px 20px;
     border-bottom: 1px solid rgba(192, 192, 192, 0.363);
     cursor: pointer;

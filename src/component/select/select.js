@@ -1,5 +1,7 @@
 import React from "react"
-import { useState,  } from "react"
+import { useState } from "react"
+import { useSelector } from "react-redux"
+// import cuisines from "../advanceSearch/cuisine"
 import "./select.css"
 function Select(props) {
   const [filter, setFilter] = useState({
@@ -9,11 +11,14 @@ function Select(props) {
     sort: "Sort-by",
   })
 
+  const cuisine = useSelector((state) => state.result.cuisine)
+
   const clicked = (e) => {
     const Parent = e.target.dataset.idtype
+    const cuisineId = e.target.dataset.cuisineid
     switch (Parent) {
       case "cuisine":
-        props.updateFilter(Parent, e.target.id)
+        props.updateFilter(Parent, e.target.id, cuisineId)
         break
       case "city":
         setFilter({ ...filter, city: e.target.id })
@@ -24,8 +29,8 @@ function Select(props) {
       case "sort":
         props.updateFilter(Parent, e.target.id)
         break
-        default:
-            return null
+      default:
+        return null
     }
   }
 
@@ -39,7 +44,7 @@ function Select(props) {
         <div
           onChange={(e) => onChange(e)}
           id="city"
-          className={`select active ${props.type} `}
+          className={`select active ${props.type} ${props.homeStyle} `}
         >
           <input
             type="text"
@@ -53,21 +58,27 @@ function Select(props) {
         <div
           id="cuisine"
           onClick={(e) => clicked(e)}
-          className={`select active ${props.type} `}
+          className={`select active ${props.type} ${props.homeStyle}  `}
         >
           <div className="selected">{props.cuisineValue}</div>
           <i className="fas fa-caret-down"></i>
 
           <div className="select-box">
-            <div className="option" id="Chinese" data-idtype="cuisine">
-              Chinese
-            </div>
-            <div className="option" id="Haitian" data-idtype="cuisine">
-              Haitian
-            </div>
-            <div className="option" id="jamaican" data-idtype="cuisine">
-              jamaican
-            </div>
+            {cuisine.map((cuisines) => {
+              const cuisineName = cuisines.cuisine.cuisine_name
+              const cuisineId = cuisines.cuisine.cuisine_id
+              return (
+                <div
+                  key={cuisineId}
+                  className="option"
+                  id={cuisineName}
+                  data-idtype="cuisine"
+                  data-cuisineid={cuisineId}
+                >
+                  {cuisineName}
+                </div>
+              )
+            })}
           </div>
         </div>
       )
